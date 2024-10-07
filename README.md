@@ -1,50 +1,63 @@
 <p align="center">
-    <img src="logo.webp" alt="drawing" width="250" />
+    <img src="logo.webp" alt="logo" width="250" />
 </p>
-
 
 # California Wildfire Visualization
+
 ## Overview
-This project visualizes the most recent wildfire data from NASA's Fire Information for Resource Management System (FIRMS) for the state of California. Using the MODIS satellite data, the script generates an interactive map that displays active wildfires, highlighting their intensity and locations, including a special marker for Redding, CA.
+This project provides a Python script to visualize recent wildfire data from NASA's Fire Information for Resource Management System (FIRMS) for California. The script fetches data using the MODIS and VIIRS satellites and generates an interactive heatmap that displays active wildfires. It includes a special focus on Redding, CA, highlighting the intensity and location of wildfires in the area.
 
 <p align="center">
-    <img src="example.png" alt="drawing" width="400" />
+    <img src="example.png" alt="example heatmap" width="400" />
 </p>
 
-
 ## Features
-**Real-Time Satellite Data**: Fetches the latest wildfire data from the NASA FIRMS API, ensuring up-to-date information on active fires.
-**Heatmap Visualization**: Represents the intensity and frequency of wildfires across different regions of California using a heatmap.
-**Detailed Markers**: Each active fire is marked on the map with details about its brightness (intensity) and the date it was detected.
-**Focus on Redding, CA**: Includes a distinct marker for Redding, CA, providing quick visibility to fires near this area.
+- **Real-Time Satellite Data**: Fetches the latest wildfire data from NASA's FIRMS API.
+- **Heatmap Visualization**: Visualizes the intensity and distribution of wildfires across California.
+- **Detailed Markers**: Displays detailed information about each wildfire, including brightness and detection date.
+- **Customizable Focus**: Allows for highlighting specific areas, such as Redding, CA.
+- **Command-Line Arguments**: Supports customization of parameters such as satellite data, area, time window, and more.
 
 ## Data Source
-The data is sourced from NASA's FIRMS via the MODIS satellite. This satellite monitors the earth in real time, providing critical data for natural disaster monitoring and environmental research.
+Data is sourced from NASA's FIRMS via MODIS and VIIRS satellites, providing near-real-time monitoring of global wildfires.
 
-## Installation Requirements
-Python 3.x
+## Installation
+Ensure Python 3.x is installed and set up:
 
-```commandline
+### Dependencies
+Install the required Python packages:
+```bash
 pip install pandas folium requests
 ```
 
-```commandline
-export NASA_API_KEY='generate here: https://firms.modaps.eosdis.nasa.gov/api/area/html'
+### API Key
+Obtain a NASA API key and set it as an environment variable:
+```bash
+export NASA_API_KEY='your_nasa_api_key_here'
+```
+You can generate an API key [here](https://api.nasa.gov/).
+
+## Usage
+Run the script with default parameters or customize the input:
+```bash
+python wildfire_heatmap.py
+```
+Customize parameters using command-line options:
+```bash
+python wildfire_heatmap.py --area="-124.3,32.35,-114,42" --satellite="VIIRS_SNPP_NRT" --time-window=7 --highlight-coords="40.5865,-122.3917" --highlight-popup="Redding, CA"
 ```
 
 ## Project Structure
-These files will be created when the script is run;
-- **fires.csv**: CSV file containing the latest fire data.
-- **california_wildfires_heatmap.html**: Interactive HTML map file. 
-
-Scripts and additional documentation will be added as the project evolves.
+- **wildfire_heatmap.py**: Main script to fetch data and generate the heatmap.
+- **fires.csv**: Generated CSV file with the latest wildfire data.
+- **california_wildfires_heatmap.html**: Generated interactive HTML map file.
 
 ## Contributing
-We welcome contributions to improve the accuracy and features of this visualization tool. Please submit your pull requests or issue tickets via GitHub.
+Contributions are welcome to enhance the script's functionality or improve the visualization. Please fork the repository and submit a pull request.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
-NASA FIRMS: For providing open access to fire data.
-The MODIS satellite team for their continuous efforts in earth monitoring.
+- **NASA FIRMS**: For providing open access to fire data.
+- **MODIS and VIIRS Satellite Teams**: For continuous monitoring and data provision.
